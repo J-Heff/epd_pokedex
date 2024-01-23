@@ -1,0 +1,519 @@
+{
+  "abilities": [
+    {
+      "ability": {
+        "name": "unaware",
+        "url": "https://pokeapi.co/api/v2/ability/109/"
+      },
+      "is_hidden": false,
+      "slot": 1
+    }
+  ],
+  "base_experience": 40,
+  "forms": [
+    {
+      "name": "cosmog",
+      "url": "https://pokeapi.co/api/v2/pokemon-form/789/"
+    }
+  ],
+  "game_indices": [],
+  "height": 2,
+  "held_items": [],
+  "id": 789,
+  "is_default": true,
+  "location_area_encounters": "https://pokeapi.co/api/v2/pokemon/789/encounters",
+  "moves": [
+    {
+      "move": {
+        "name": "teleport",
+        "url": "https://pokeapi.co/api/v2/move/100/"
+      },
+      "version_group_details": [
+        {
+          "level_learned_at": 23,
+          "move_learn_method": {
+            "name": "level-up",
+            "url": "https://pokeapi.co/api/v2/move-learn-method/1/"
+          },
+          "version_group": {
+            "name": "sun-moon",
+            "url": "https://pokeapi.co/api/v2/version-group/17/"
+          }
+        },
+        {
+          "level_learned_at": 23,
+          "move_learn_method": {
+            "name": "level-up",
+            "url": "https://pokeapi.co/api/v2/move-learn-method/1/"
+          },
+          "version_group": {
+            "name": "ultra-sun-ultra-moon",
+            "url": "https://pokeapi.co/api/v2/version-group/18/"
+          }
+        },
+        {
+          "level_learned_at": 1,
+          "move_learn_method": {
+            "name": "level-up",
+            "url": "https://pokeapi.co/api/v2/move-learn-method/1/"
+          },
+          "version_group": {
+            "name": "sword-shield",
+            "url": "https://pokeapi.co/api/v2/version-group/20/"
+          }
+        }
+      ]
+    },
+    {
+      "move": {
+        "name": "splash",
+        "url": "https://pokeapi.co/api/v2/move/150/"
+      },
+      "version_group_details": [
+        {
+          "level_learned_at": 1,
+          "move_learn_method": {
+            "name": "level-up",
+            "url": "https://pokeapi.co/api/v2/move-learn-method/1/"
+          },
+          "version_group": {
+            "name": "sun-moon",
+            "url": "https://pokeapi.co/api/v2/version-group/17/"
+          }
+        },
+        {
+          "level_learned_at": 1,
+          "move_learn_method": {
+            "name": "level-up",
+            "url": "https://pokeapi.co/api/v2/move-learn-method/1/"
+          },
+          "version_group": {
+            "name": "ultra-sun-ultra-moon",
+            "url": "https://pokeapi.co/api/v2/version-group/18/"
+          }
+        },
+        {
+          "level_learned_at": 1,
+          "move_learn_method": {
+            "name": "level-up",
+            "url": "https://pokeapi.co/api/v2/move-learn-method/1/"
+          },
+          "version_group": {
+            "name": "sword-shield",
+            "url": "https://pokeapi.co/api/v2/version-group/20/"
+          }
+        }
+      ]
+    }
+  ],
+  "name": "cosmog",
+  "order": 789,
+  "past_abilities": [],
+  "past_types": [],
+  "species": {
+    "name": "cosmog",
+    "url": "https://pokeapi.co/api/v2/pokemon-species/789/"
+  },
+  "sprites": {
+    "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/789.png",
+    "back_female": null,
+    "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/789.png",
+    "back_shiny_female": null,
+    "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/789.png",
+    "front_female": null,
+    "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/789.png",
+    "front_shiny_female": null,
+    "other": {
+      "dream_world": {
+        "front_default": null,
+        "front_female": null
+      },
+      "home": {
+        "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/789.png",
+        "front_female": null,
+        "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/789.png",
+        "front_shiny_female": null
+      },
+      "official-artwork": {
+        "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/789.png",
+        "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/789.png"
+      },
+      "showdown": {
+        "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/back/789.gif",
+        "back_female": null,
+        "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/back/shiny/789.gif",
+        "back_shiny_female": null,
+        "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/789.gif",
+        "front_female": null,
+        "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/shiny/789.gif",
+        "front_shiny_female": null
+      }
+    },
+    "versions": {
+      "generation-i": {
+        "red-blue": {
+          "back_default": null,
+          "back_gray": null,
+          "back_transparent": null,
+          "front_default": null,
+          "front_gray": null,
+          "front_transparent": null
+        },
+        "yellow": {
+          "back_default": null,
+          "back_gray": null,
+          "back_transparent": null,
+          "front_default": null,
+          "front_gray": null,
+          "front_transparent": null
+        }
+      },
+      "generation-ii": {
+        "crystal": {
+          "back_default": null,
+          "back_shiny": null,
+          "back_shiny_transparent": null,
+          "back_transparent": null,
+          "front_default": null,
+          "front_shiny": null,
+          "front_shiny_transparent": null,
+          "front_transparent": null
+        },
+        "gold": {
+          "back_default": null,
+          "back_shiny": null,
+          "front_default": null,
+          "front_shiny": null,
+          "front_transparent": null
+        },
+        "silver": {
+          "back_default": null,
+          "back_shiny": null,
+          "front_default": null,
+          "front_shiny": null,
+          "front_transparent": null
+        }
+      },
+      "generation-iii": {
+        "emerald": {
+          "front_default": null,
+          "front_shiny": null
+        },
+        "firered-leafgreen": {
+          "back_default": null,
+          "back_shiny": null,
+          "front_default": null,
+          "front_shiny": null
+        },
+        "ruby-sapphire": {
+          "back_default": null,
+          "back_shiny": null,
+          "front_default": null,
+          "front_shiny": null
+        }
+      },
+      "generation-iv": {
+        "diamond-pearl": {
+          "back_default": null,
+          "back_female": null,
+          "back_shiny": null,
+          "back_shiny_female": null,
+          "front_default": null,
+          "front_female": null,
+          "front_shiny": null,
+          "front_shiny_female": null
+        },
+        "heartgold-soulsilver": {
+          "back_default": null,
+          "back_female": null,
+          "back_shiny": null,
+          "back_shiny_female": null,
+          "front_default": null,
+          "front_female": null,
+          "front_shiny": null,
+          "front_shiny_female": null
+        },
+        "platinum": {
+          "back_default": null,
+          "back_female": null,
+          "back_shiny": null,
+          "back_shiny_female": null,
+          "front_default": null,
+          "front_female": null,
+          "front_shiny": null,
+          "front_shiny_female": null
+        }
+      },
+      "generation-v": {
+        "black-white": {
+          "animated": {
+            "back_default": null,
+            "back_female": null,
+            "back_shiny": null,
+            "back_shiny_female": null,
+            "front_default": null,
+            "front_female": null,
+            "front_shiny": null,
+            "front_shiny_female": null
+          },
+          "back_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/back/789.png",
+          "back_female": null,
+          "back_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/back/shiny/789.png",
+          "back_shiny_female": null,
+          "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/789.png",
+          "front_female": null,
+          "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/shiny/789.png",
+          "front_shiny_female": null
+        }
+      },
+      "generation-vi": {
+        "omegaruby-alphasapphire": {
+          "front_default": null,
+          "front_female": null,
+          "front_shiny": null,
+          "front_shiny_female": null
+        },
+        "x-y": {
+          "front_default": null,
+          "front_female": null,
+          "front_shiny": null,
+          "front_shiny_female": null
+        }
+      },
+      "generation-vii": {
+        "icons": {
+          "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/789.png",
+          "front_female": null
+        },
+        "ultra-sun-ultra-moon": {
+          "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/ultra-sun-ultra-moon/789.png",
+          "front_female": null,
+          "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/ultra-sun-ultra-moon/shiny/789.png",
+          "front_shiny_female": null
+        }
+      },
+      "generation-viii": {
+        "icons": {
+          "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/789.png",
+          "front_female": null
+        }
+      }
+    }
+  },
+  "stats": [
+    {
+      "base_stat": 43,
+      "effort": 1,
+      "stat": {
+        "name": "hp",
+        "url": "https://pokeapi.co/api/v2/stat/1/"
+      }
+    },
+    {
+      "base_stat": 29,
+      "effort": 0,
+      "stat": {
+        "name": "attack",
+        "url": "https://pokeapi.co/api/v2/stat/2/"
+      }
+    },
+    {
+      "base_stat": 31,
+      "effort": 0,
+      "stat": {
+        "name": "defense",
+        "url": "https://pokeapi.co/api/v2/stat/3/"
+      }
+    },
+    {
+      "base_stat": 29,
+      "effort": 0,
+      "stat": {
+        "name": "special-attack",
+        "url": "https://pokeapi.co/api/v2/stat/4/"
+      }
+    },
+    {
+      "base_stat": 31,
+      "effort": 0,
+      "stat": {
+        "name": "special-defense",
+        "url": "https://pokeapi.co/api/v2/stat/5/"
+      }
+    },
+    {
+      "base_stat": 37,
+      "effort": 0,
+      "stat": {
+        "name": "speed",
+        "url": "https://pokeapi.co/api/v2/stat/6/"
+      }
+    }
+  ],
+  "types": [
+    {
+      "slot": 1,
+      "type": {
+        "name": "psychic",
+        "url": "https://pokeapi.co/api/v2/type/14/"
+      }
+    }
+  ],
+  "weight": 1,
+  "base_happiness": 0,
+  "capture_rate": 45,
+  "color": {
+    "name": "blue",
+    "url": "https://pokeapi.co/api/v2/pokemon-color/2/"
+  },
+  "egg_groups": [
+    {
+      "name": "no-eggs",
+      "url": "https://pokeapi.co/api/v2/egg-group/15/"
+    }
+  ],
+  "evolution_chain": {
+    "url": "https://pokeapi.co/api/v2/evolution-chain/413/"
+  },
+  "evolves_from_species": null,
+  "flavor_text_entries": [
+    {
+      "flavor_text": "Its body is gaseous and frail. It slowly grows as it collects dust from the atmosphere.",
+      "language": {
+        "name": "en",
+        "url": "https://pokeapi.co/api/v2/language/9/"
+      },
+      "version": {
+        "name": "sun",
+        "url": "https://pokeapi.co/api/v2/version/27/"
+      }
+    },
+    {
+      "flavor_text": "In ages past, it was called the child of the stars. It\u2019s said to be a Pok\u00e9mon from another world, but no specific details are known.",
+      "language": {
+        "name": "en",
+        "url": "https://pokeapi.co/api/v2/language/9/"
+      },
+      "version": {
+        "name": "moon",
+        "url": "https://pokeapi.co/api/v2/version/28/"
+      }
+    },
+    {
+      "flavor_text": "Even though its helpless, gaseous body can be blown away by the slightest breeze, it doesn\u2019t seem to care.",
+      "language": {
+        "name": "en",
+        "url": "https://pokeapi.co/api/v2/language/9/"
+      },
+      "version": {
+        "name": "ultra-sun",
+        "url": "https://pokeapi.co/api/v2/version/29/"
+      }
+    },
+    {
+      "flavor_text": "Whether or not it\u2019s a Pok\u00e9mon from this world is a mystery. When it\u2019s in a jam, it warps away to a safe place to hide.",
+      "language": {
+        "name": "en",
+        "url": "https://pokeapi.co/api/v2/language/9/"
+      },
+      "version": {
+        "name": "ultra-moon",
+        "url": "https://pokeapi.co/api/v2/version/30/"
+      }
+    },
+    {
+      "flavor_text": "This Pok\u00e9mon came from another universe. Its gaseous body is so light that even a gentle breeze can blow it away.",
+      "language": {
+        "name": "en",
+        "url": "https://pokeapi.co/api/v2/language/9/"
+      },
+      "version": {
+        "name": "sword",
+        "url": "https://pokeapi.co/api/v2/version/33/"
+      }
+    },
+    {
+      "flavor_text": "Cosmog is very curious but not very cautious, often placing itself in danger. If things start to look dicey, it teleports away.",
+      "language": {
+        "name": "en",
+        "url": "https://pokeapi.co/api/v2/language/9/"
+      },
+      "version": {
+        "name": "shield",
+        "url": "https://pokeapi.co/api/v2/version/34/"
+      }
+    }
+  ],
+  "form_descriptions": [],
+  "forms_switchable": false,
+  "gender_rate": -1,
+  "genera": [
+    {
+      "genus": "Nebula Pok\u00e9mon",
+      "language": {
+        "name": "en",
+        "url": "https://pokeapi.co/api/v2/language/9/"
+      }
+    }
+  ],
+  "generation": {
+    "name": "generation-vii",
+    "url": "https://pokeapi.co/api/v2/generation/7/"
+  },
+  "growth_rate": {
+    "name": "slow",
+    "url": "https://pokeapi.co/api/v2/growth-rate/1/"
+  },
+  "habitat": null,
+  "has_gender_differences": false,
+  "hatch_counter": 120,
+  "is_baby": false,
+  "is_legendary": true,
+  "is_mythical": false,
+  "names": [
+    {
+      "language": {
+        "name": "en",
+        "url": "https://pokeapi.co/api/v2/language/9/"
+      },
+      "name": "Cosmog"
+    }
+  ],
+  "pal_park_encounters": [],
+  "pokedex_numbers": [
+    {
+      "entry_number": 789,
+      "pokedex": {
+        "name": "national",
+        "url": "https://pokeapi.co/api/v2/pokedex/1/"
+      }
+    },
+    {
+      "entry_number": 289,
+      "pokedex": {
+        "name": "original-alola",
+        "url": "https://pokeapi.co/api/v2/pokedex/16/"
+      }
+    },
+    {
+      "entry_number": 387,
+      "pokedex": {
+        "name": "updated-alola",
+        "url": "https://pokeapi.co/api/v2/pokedex/21/"
+      }
+    }
+  ],
+  "shape": {
+    "name": "ball",
+    "url": "https://pokeapi.co/api/v2/pokemon-shape/1/"
+  },
+  "varieties": [
+    {
+      "is_default": true,
+      "pokemon": {
+        "name": "cosmog",
+        "url": "https://pokeapi.co/api/v2/pokemon/789/"
+      }
+    }
+  ]
+}
