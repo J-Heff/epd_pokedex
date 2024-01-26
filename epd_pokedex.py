@@ -36,23 +36,6 @@ font_dir_path = os.path.join(script_path, 'fonts')
 logging.getLogger(__name__)
 logging.basicConfig(level=logging.DEBUG)
 
-'''
-def new_epd() -> epd2in13g:
-    try:
-        logging.info("Starting epd2in13g Demo")
-
-        #epd = epd2in13g.EPD()
-    except IOError as e:
-        logging.info(e)
-        print(traceback.format_exc())
-    except KeyboardInterrupt:    
-        logging.info("ctrl + c:")
-        epd2in13g.epdconfig.module_exit(cleanup=True)
-        exit()
-    
-    return epd
-'''
-
 def convert_transparent_to_white_file(image_path: str, new_format: str = 'jpg') -> str:
     '''Converts an image to a new format and returns the new image's path
     
@@ -173,34 +156,66 @@ def get_pokemon_sprite_png_path(pokemon:(int, str)) -> str:
 # Image functions
 #####
 
-def create_pokemon_info_text(pokemon_data: dict, canvas_size: tuple[int], font: ImageFont, canvas_color: str="WHITE", font_color: str="BLACK") -> Image:
+def create_pokemon_info_text(pokemon_data: dict, canvas_size: tuple[int], font: ImageFont, canvas_color: str="WHITE", font_path: str=font_dir_path, font_size: int=24, font_color: str="BLACK") -> Image:
     logging.debug(f"Creating info text of size {canvas_size}")
     #Create the canvas for pkmn info 
     canvas = Image.new("RGBA", canvas_size, canvas_color)
     info_txt = ImageDraw.Draw(canvas)
-    
-    #Dex number and name
-    pokemon_name = pokemon_data['name'][0].upper() + pokemon_data['name'][1::]
-    pokemon_id = f"{pokemon_data['id']}"
-    info_txt_str = f"No. {pokemon_id}\n{pokemon_name}"
-    logging.debug(f"Writing pokemon data: {info_txt_str}")
+    orig_font_size = font_size
+
+    #Starting coords
     info_txt_x = 10
-    info_txt_y = 20
-    bbox = info_txt.multiline_textbbox((info_txt_x, info_txt_y), info_txt_str, font=font)
-    info_txt.multiline_text((info_txt_x, info_txt_y), info_txt_str, font_color, font=font)
-    info_txt_y += bbox[3] + 20
+    info_txt_y = 0
+
+    #Name
+    name_txt = ImageDraw.Draw(canvas)
+    name_x = info_txt_x
+    name_y = info_txt_y + 10
+    max_name_width = canvas_size[0] - 95
+    pkmn_name = pokemon_data['name'][0].upper() + pokemon_data['name'][1::]
+    name_bbox = name_txt.textbbox((name_x, name_y), pkmn_name, font=font)
+    
+    while name_bbox[2] > max_name_width:
+        #Smaller font that might fit
+        font_size -= 1
+        font = ImageFont.truetype(font_path, font_size)
+        name_bbox = name_txt.textbbox((name_x, name_y), pkmn_name, font=font)
+    
+    name_txt.text((name_x, name_y), pkmn_name, font_color, font=font)
+    font_size = orig_font_size
+    #info_txt_y += bbox[3]
+
+    #Dex number
+    dexno_txt = ImageDraw.Draw(canvas)
+    dexno_x = canvas_size[0]-95
+    dexno_y = info_txt_y+10
+    dexno = f"{pokemon_data['id']}".zfill(4)
+    dexno_bbox = info_txt.textbbox((dexno_x, dexno_y), dexno, font=font, align='right')
+    dexno_txt.text((dexno_x, dexno_y), dexno, font_color, font=font, align='right')
+    rect_tl_coords = (dexno_bbox[0]-5, -10)
+    rect_br_coords = (canvas_size[0]+2, dexno_bbox[3]+10)
+    dexno_txt.rounded_rectangle((rect_tl_coords, rect_br_coords), outline='black', width=5, radius=10, corners=(False, False, False, True))
+    info_txt_y += dexno_bbox[3] + 40
+
+    #Genera Text
+    genera_canvas_size = (canvas_size[0], int(canvas_size[1]))
+    genera_canvas = create_pokemon_genera_info(pokemon_data, genera_canvas_size, font, canvas_color, font_color)
+    canvas.paste(genera_canvas, (info_txt_x, info_txt_y), genera_canvas)
+    info_txt_y += 40
     
     #Type icon(s)
-    type_canvas_size = (canvas_size[0], int(canvas_size[1]))
+    type_icons_offset = 20
+    type_canvas_size = (canvas_size[0], int(canvas_size[1] / 2))
     type_info_canvas = create_pokemon_type_info(pokemon_data, type_canvas_size, font, canvas_color, font_color)
-    canvas.paste(type_info_canvas, (info_txt_x, info_txt_y), type_info_canvas)
+    canvas.paste(type_info_canvas, (info_txt_x, info_txt_y + type_icons_offset), type_info_canvas)
 
     canvas = canvas.convert("RGB")
-
+    
     #Save canvas for debugging
     #canvas_path = os.path.join(script_path, f"test-info-canvas.png")
     #logging.debug(f"Saving canvas to {canvas_path}")
     #canvas.save(canvas_path)
+    
 
     return canvas
 
@@ -234,10 +249,65 @@ def create_pokemon_type_info(pokemon_data: dict, canvas_size: tuple[int], font: 
         type_sprite_y = 0
     
     #Save canvas for debugging
-    canvas_path = os.path.join(script_path, f"test-type-canvas.png")
-    logging.debug(f"Saving type canvas to {canvas_path}")
-    canvas.save(canvas_path)
+    #canvas_path = os.path.join(script_path, f"test-type-canvas.png")
+    #logging.debug(f"Saving type canvas to {canvas_path}")
+    #canvas.save(canvas_path)
     
+    return canvas
+
+
+def create_pokemon_genera_info(pokemon_data: dict, canvas_size: tuple[int], font: ImageFont, canvas_color: str="WHITE", font_path: str=font_dir_path, font_size: int=24, font_color: str="BLACK") -> Image:
+    logging.debug(f"Creating genera info canvas of size {canvas_size}")
+    #Create the canvas for pkmn info 
+    canvas = Image.new("RGBA", canvas_size, canvas_color)
+    genera_info = ImageDraw.Draw(canvas)
+
+    #Coords
+    genera_y = 0
+    genera_x = 0
+    max_txt_size_x = canvas_size[0] - 10
+    max_txt_size_y = canvas_size[1] - 20
+    line_spacing=8
+
+    #Dex number and name
+    genera_txt = choice(pokemon_data['genera'])['genus']
+    while True:
+        text = []
+        for word in genera_txt.split(' '):
+            txt_line = ' '.join(text)
+            txt_line += f' {word}'
+
+            bbox = genera_info.multiline_textbbox((genera_x, genera_y), txt_line, font=font, spacing=line_spacing)
+            
+            if bbox[2] > max_txt_size_x:
+                text.append(f'\nword')
+        
+        #Check if text is too tall
+        txt_str = '  '.join(text)
+        bbox = genera_info.multiline_textbbox((genera_x, genera_y), txt_str, font=font)
+
+        #Good enough, lets leave
+        if bbox[3] < max_txt_size_y:
+            break
+        
+        #Smaller font that might fit
+        font_size -= 1
+        font = ImageFont.truetype(font_path, font_size)
+
+    #info_txt_str = f"No. {pokemon_id}\n{pokemon_name}"
+    logging.debug(f"Writing pokemon data: {genera_txt}")
+
+    #bbox = genera_txt.textbbox((genera_x, genera_y), genera_txt, font=font)
+    genera_info.text((genera_x, genera_y), genera_txt, font_color, font=font)
+    #genera_y += bbox[3] + 20
+    
+    #canvas = canvas.convert("RGB")
+
+    #Save canvas for debugging
+    #canvas_path = os.path.join(script_path, f"test-info-canvas.png")
+    #logging.debug(f"Saving canvas to {canvas_path}")
+    #canvas.save(canvas_path)
+
     return canvas
 
 
@@ -251,7 +321,7 @@ def create_pokemon_dex_text(pokemon_data: dict, canvas_size: tuple, canvas_color
         font = ImageFont.truetype(font_path, font_size)
     
     #What are we writing?
-    flavor_text_list = list(set(entry['flavor_text'] for entry in pokemon_data['flavor_text_entries'] if entry['language']['name'] == 'en')) #Convert to set to dedupe
+    flavor_text_list = pokemon_data['flavor_text_entries']#Convert to set to dedupe
     flavor_text = choice(flavor_text_list)
     flavor_text = flavor_text.replace('\n', ' ')
     logging.debug(f"Writing flavor text: {flavor_text}")
@@ -397,37 +467,23 @@ def main():
     sprite_background = Image.new("RGBA", (inky_display.width, inky_display.height), "WHITE") # Create a white rgba background
     sprite_background.paste(sprite, (0,0), sprite) # Paste the image on the background
     
-    '''
-    #Quantize the image so that it works with EPDs limited colors/palette
-    palette = Image.new("P", (1, 1))
-    inky_palette = [value for rgb in inky_display_DESATURATED_PALETTE for value in rgb]
-    inky_palette += [0,0,0] * (256 - int(len(inky_palette) / 3))
-    palette.putpalette(inky_palette)
-    '''
-    '''palette.putpalette(
-    [
-        255, 255, 255,   # 0 = White
-        0, 0, 0,         # 1 = Black
-        255, 255, 0,       # 2 = Red (255, 255, 0 for yellow)
-    ] + [0, 0, 0] * 253  # Zero fill the rest of the 256 colour palette
-    )
-    '''
-    '''
-    sprite_background = sprite_background.quantize(colors=len(inky_display_DESATURATED_PALETTE), palette=palette)
-    '''
     sprite_background = quantize_image(inky_display.DESATURATED_PALETTE, sprite_background).convert('RGBA')
     backdrop.paste(sprite_background, (0,0), sprite_background)
 
     #Import font(s)
     font_path = os.path.join(font_dir_path, 'pkmn.ttf')
     logging.debug(f"Getting font from {font_path}")
-    pkmn_font24 = ImageFont.truetype(font_path, 24)
+    try:
+        pkmn_font24 = ImageFont.truetype(font_path, 24)
+    except Exception as e:
+        logging.warn(f"Could not load font file from {font_path}!")
+        raise e
 
     #Create the info text section and apply it to the backdrop
     info_txt_width = inky_display.width - sprite.width
-    info_txt_height = inky_display.height - sprite.height
+    info_txt_height = sprite.height
     logging.debug(f"Info text width: {info_txt_width} ({inky_display.width} - {sprite.width})")
-    logging.debug(f"Info text height: {info_txt_height} ({inky_display.height} - {sprite.height})")
+    logging.debug(f"Info text height: {info_txt_height}")
     info_txt = create_pokemon_info_text(pokemon_data, (info_txt_width, info_txt_height), font=pkmn_font24)
     info_txt = quantize_image(inky_display.DESATURATED_PALETTE, info_txt).convert("RGBA")
     info_start_x = sprite.width + 5
@@ -473,26 +529,6 @@ def main():
     # And show it!
     logging.info('Showing image on EPD')
     inky_display.show()
-    
-    '''
-    sprite_img = Image.open(sprite_path, mode='RGBA')
-
-    #Create the Text
-    txt_img_size = (80,65)
-    txt_img = Image.new('RGB', txt_img_size, (255,255,255))
-    txt = ImageDraw.Draw(txt_img)
-    txt.text((0,0), f'#{pokemon_data['id']}', font=font24, fill=(0,0,0))
-    txt.text((0,30),f"{pokemon_data['name']}", font=font24, fill=(0,0,0))
-    r_txt = txt_img.rotate(270, expand=1)
-    
-    #Combine the picture & text
-    sprite_img.paste(r_txt, (30, 140))
-
-    #Send it to the EPD
-    new_name = os.path.join(os.path.dirname(os.path.abspath(__file__)), f'{pokemon_data['id']}.bmp')
-    sprite_img.save(new_name)
-    #epd.display(epd.getbuffer(sprite_img))
-    '''
 
 
 if __name__ == '__main__':
